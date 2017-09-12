@@ -4,7 +4,11 @@ import { text, title } from './shared/typography'
 import { toDoList } from './toDoList.css'
 import btn from './shared/button'
 
-const ToDoList = React.createClass({
+export default class ToDoList extends React.Component {
+    onClickNormal() {
+        alert("NORMAL");
+    }
+
     render() {
         return (
             <div className={toDoList}>
@@ -12,14 +16,12 @@ const ToDoList = React.createClass({
 
                 <p className={text}>Pancake's story</p>
 
-                <button className={btn.normal} role="button">Normal Button</button>
+                <button className={btn.normal} onClick={this.onClickNormal} role="button">Normal Button</button>
 
-                <button className={btn.primary} role="button">Primary Button</button>
+                <button className={btn.primary} onClick={this.onClickNormal} role="button">Primary Button</button>
 
-                <button className={btn.danger} role="button">Wrong Button</button>
+                <button className={btn.danger} onClick={this.onClickNormal} role="button">Wrong Button</button>
             </div>
-        )
+        );
     }
-})
-
-export default ToDoList
+}

@@ -3,7 +3,7 @@ import React from 'react'
 import { app } from './app.css'
 import { mastHead } from './shared/typography'
 
-const App = React.createClass({
+export default class App extends React.Component {
     render() {
         return (
             <main className={app}>
@@ -12,6 +12,4 @@ const App = React.createClass({
             </main>
         );
     }
-});
-
-export default App
+}
