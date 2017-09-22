@@ -1,29 +1,31 @@
-@import "normalize.css/normalize";
-
-.index {
-    composes: base from "./components/shared/typography.css";
-}
-
-/* Box Sizing */
-
-html {
-    box-sizing: border-box;
-}
-
-html,
 body {
     margin: 0;
     padding: 0;
 }
 
-*,
-*:before,
-*:after {
-    box-sizing: border-box;
+h1 {
+    margin: 0;
 }
 
-body {
-    font-feature-settings: "kern", "liga", "pnum";
-    font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
+main {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+
+section {
+    height: 100%;
+    width: 100%;
+}
+
+.navigation {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
+    & li {
+        display: inline;
+    }
 }

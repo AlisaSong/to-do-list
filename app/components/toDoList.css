@@ -1,4 +1,0 @@
-.toDoList {
-    composes: bordered rounded subtle from "./shared/borders.css";
-    padding: 1em;
-}
