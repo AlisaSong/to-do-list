@@ -1,17 +1,12 @@
 import React from 'react'
 
-import { app } from './app.css'
-import { mastHead } from './shared/typography'
-
-const App = React.createClass({
+export default class App extends React.Component {
     render() {
         return (
-            <main className={app}>
-                <h1 className={mastHead}>To Do List</h1>
+            <main>
+                <header>To Do List Manager</header>
                 {this.props.children}
             </main>
         );
     }
-});
-
-export default App
+}

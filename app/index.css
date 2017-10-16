@@ -1,29 +1,108 @@
-@import "normalize.css/normalize";
-
-.index {
-    composes: base from "./components/shared/typography.css";
-}
-
-/* Box Sizing */
-
-html {
-    box-sizing: border-box;
-}
-
-html,
 body {
+    margin: 0px;
+    padding: 0px;
+}
+
+header {
+    background-color: #f2ebeb;
+    font-family: Verdana;
+    font-size: 18px;
+    height: 50px;
+    line-height: 50px;
+    margin: 0;
+    text-align: center;
+}
+
+main {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+
+section {
+    position: absolute;
+    left: 0;
+    top: 50px;
+    right: 0;
+    bottom: 0;
+}
+
+.tasks {
+    list-style-type: none;
+}
+
+.statusButtons {
+    list-style-type: none;
+    padding: 0;
+
+    & li {
+        border: 3px solid black;
+        display: inline-block;
+        font-family: Verdana;
+        font-size: 16px;
+        height: 30px;
+        line-height: 30px;
+        margin-right: 3px;
+        padding: 0 15px;
+        text-align: center;
+        transition: all .2s ease-in-out;
+        width: 100px;
+         }
+
+    & li:hover {
+        cursor: pointer;
+        transform: scale(1.1);
+    }
+}
+
+
+.selectedStatus {
+    box-shadow: inset 200px 0 0 0 #cd486b;
+    font-weight: bold;
+}
+
+.editButton {
+    background-color: lightgray;
+    border: 1px solid gray;
+    padding: 0 1px;
+    position: absolute;
+    left: 20%;
+}
+
+.deleteButton {
+    background-color: lightgray;
+    border: 1px solid gray;
+    padding: 0 1px;
+    position: absolute;
+    left: 22%;
+}
+
+.sectionNavigation {
+    background-color: #db8d8d;
+    height: 100%;
+    width: 200px;
+}
+
+.sectionContent {
+    position: absolute;
+    left: 200px;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.listNavigation {
+    list-style-type: none;
     margin: 0;
     padding: 0;
+    & li {
+        color: #fff;
+        font-weight: bold;
+        height: 50px;
+        line-height: 50px;
+        padding-left: 10px;
+    }
 }
 
-*,
-*:before,
-*:after {
-    box-sizing: border-box;
-}
-
-body {
-    font-feature-settings: "kern", "liga", "pnum";
-    font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
-}
