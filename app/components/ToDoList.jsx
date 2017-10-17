@@ -21,6 +21,14 @@ export default class ToDoList extends React.Component {
         return this.state.lists[this.state.selectedList];
     }
 
+    onChangeListName(index, event) {
+        let lists = this.state.lists;
+        lists[index].name = event.target.value;
+        this.setState({
+            lists: lists
+        });
+    }
+
     onChangeTaskName(index, event) {
         let tasks = this.getCurrentList().tasks;
         tasks[index].name = event.target.value;
@@ -39,7 +47,10 @@ export default class ToDoList extends React.Component {
     onClickAddNewList() {
         let lists = this.state.lists;
         lists.push({
+            isEditing: true,
+            isHovered: false,
             name: 'New List',
+            namePrevious: 'New List',
             selectedStatus: 'All',
             tasks: []
         });
@@ -59,6 +70,15 @@ export default class ToDoList extends React.Component {
             status: 'To Do'
         });
         this.updateTasks(tasks);
+    }
+
+    onClickCancelList(index) {
+        let lists = this.state.lists;
+        lists[index].isEditing = false;
+        lists[index].name = lists[index].namePrevious;
+        this.setState({
+            lists: lists
+        });
     }
 
     onClickCancelTask(index) {
@@ -85,6 +105,10 @@ export default class ToDoList extends React.Component {
 
     onClickEditList(index) {
         let lists = this.state.lists;
+        lists[index].isEditing = true;
+        this.setState({
+            lists: lists
+        });
     }
 
     onClickEditTask(index) {
@@ -96,6 +120,16 @@ export default class ToDoList extends React.Component {
     onClickList(index) {
         this.setState({
             selectedList: index
+        });
+    }
+
+    onClickSaveList(index) {
+        let lists = this.state.lists;
+        lists[index].isEditing = false;
+        lists[index].isHovered = false;
+        lists[index].namePrevious = lists[index].name;
+        this.setState({
+            lists: lists
         });
     }
 
@@ -148,11 +182,21 @@ export default class ToDoList extends React.Component {
                             <li key={index}
                                 onMouseEnter={() => { this.onHoverList(index, true) }}
                                 onMouseLeave={() => { this.onHoverList(index, false) }}>
-                                <span onClick={() => this.onClickList(index)}>{list.name}</span>
-                                {list.isHovered &&
+                                <span onClick={() => this.onClickList(index)}>{list.isEditing
+                                    ? <input type="text"
+                                        onChange={(event) => this.onChangeListName(index, event)}
+                                        value={list.name} />
+                                    : list.name}</span>
+                                {list.isHovered && !list.isEditing &&
                                     <span>
                                         <span onClick={() => this.onClickEditList(index)}>Edit</span>
                                         <span onClick={() => this.onClickDeleteList(index)}>Delete</span>
+                                    </span>
+                                }
+                                {list.isEditing &&
+                                    <span>
+                                        <span onClick={() => this.onClickSaveList(index)}>Save</span>
+                                        <span onClick={() => this.onClickCancelList(index)}>Cancel</span>
                                     </span>
                                 }
                             </li>
